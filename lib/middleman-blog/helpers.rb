@@ -89,6 +89,22 @@ module Middleman
         build_url blog_controller(blog_name).tag_pages.link(tag)
       end
 
+      # Get a path to the given tag page, based on the +taglink+ blog setting.
+      # @param [String] tag
+      # @param [String] locale
+      # @param [Symbol, String] blog_name Optional name of the blog to use.
+      # @return [String]
+      def tag_path_locale(tag, locale, blog_name=nil)
+        prefix = ""
+        if locale && locale.to_s != "en"
+          prefix = locale.to_s+"/"
+        end
+
+        puts prefix
+
+        build_url prefix+blog_controller(blog_name).tag_pages.link(tag)
+      end      
+      
       # Get a path to the given year-based calendar page, based on the +year_link+ blog setting.
       # @param [Number] year
       # @param [Symbol, String] blog_name Optional name of the blog to use.
